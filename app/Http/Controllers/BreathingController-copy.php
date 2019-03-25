@@ -84,6 +84,7 @@ class BreathingController extends Controller
       $filterbreathing = DB::table('breathing')
             ->join('users', 'users.id', '=', 'breathing.user_id')
             ->select('name','age','gender','height','weight','race','country','illness','breathing.created_at','before','after')
+            ->orderBy('breathing.created_at','DESC')
             ->get();
 
       $btbefore = [];
@@ -117,6 +118,7 @@ class BreathingController extends Controller
       $filterhrv = DB::table('hrv')
             ->join('users', 'users.id', '=', 'hrv.user_id')
             ->select('name','age','gender','height','weight','race','country','illness','hrv.created_at','before','hrv','after')
+            ->orderBy('hrv.created_at','DESC')
             ->get();
 
       $hrvbefore = [];
