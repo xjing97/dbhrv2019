@@ -31,16 +31,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
- Route::get('/home', 'BreathingController@breathing')->name('home');
+Route::get('/home', 'BreathingController@breathing')->name('home');
 //
  Route::get('/welcome', 'HrvController@hrv')->name('home');
-
-//Route::get('/chart','BreathingController@chart');
-
-// Route::get('breathing', 'BreathingController@breathing')->name('breathing');
-//
-// Route::get('hrv', 'HrvController@hrv')->name('hrv');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
