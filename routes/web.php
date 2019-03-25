@@ -40,3 +40,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('breathing', 'BreathingController@breathing')->name('breathing');
 //
 // Route::get('hrv', 'HrvController@hrv')->name('hrv');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
