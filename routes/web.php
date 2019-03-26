@@ -34,3 +34,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home', 'BreathingController@breathing')->name('home');
 //
  Route::get('/welcome', 'HrvController@hrv')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
