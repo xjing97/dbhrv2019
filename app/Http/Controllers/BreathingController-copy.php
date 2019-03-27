@@ -63,7 +63,7 @@ class BreathingController extends Controller
       $ageRange[0] = DB::table('users')->where('age','<','18')->count();
       $ageRange[1] = DB::table('users')->whereBetween('age',array('18','25'))->count();
       $ageRange[2] = DB::table('users')->whereBetween('age',array('26','40'))->count();
-      $ageRange[3] = DB::table('users')->whereBetween('age',array('40','60'))->count();
+      $ageRange[3] = DB::table('users')->whereBetween('age',array('41','60'))->count();
       $ageRange[4] = DB::table('users')->where('age','>','60')->count();
 
 
@@ -77,7 +77,7 @@ class BreathingController extends Controller
 
                   ->responsive(true)
 
-                  ->labels(['<18', '18-25', '26-35','40-60','>60'])
+                  ->labels(['<18', '18-25', '26-40','41-60','>60'])
 
                   ->values($ageRange);
 
