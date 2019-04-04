@@ -143,6 +143,7 @@ class PassportController extends Controller
     }else{
       return response()->json(['message' => 'Invalid Email', 'status' => false], 401);
     }
+    
   }
 
   public function changePassword(Request $request) {
