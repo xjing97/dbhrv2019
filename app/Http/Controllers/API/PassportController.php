@@ -101,7 +101,7 @@ class PassportController extends Controller
     $validator = Validator::make($request->all(), [
         'email' => 'required|string|email',
     ]);
-    if ($validator->fails()||User::where('email', $request->email)->first()==null) {
+    if ($validator->fails()) {
         return response()->json(['error'=>$validator->errors(), 'message' => 'Invalid Email', 'status' => false], 401);
     }
     $user = User::where('email', $request->email)->first();
