@@ -106,19 +106,31 @@ class PassportController extends Controller
     }
     $user = User::where('email', $request->email)->first();
     if ($user != null) {
+      $newUser = $user->name;
+      $newAge = $user->age;
+      $newGender = $user->gender;
+      $newHeight = $user->height;
+      $newWeight = $user->weight;
+      $newRace = $user->race;
+      $newCountry = $user->country;
+      $newIllness = $user->illness;
+
+
       $newPass = str_random(6);
+
       $user->delete();
       $user = new User([
-          'name' => $user->name,
+          'name' => $newUser,
           'email' => $request->email,
-          'age' => $user->age,
-          'gender' => $user->gender,
-          'country' => $user->country,
-          'race' => $user->race,
-          'height' => $user->height,
-          'weight' => $user->weight,
-          'illness' => $user->illness,
-          'password' => bcrypt($newPass)
+          'password' => bcrypt($newPass),
+          'age' => $newAge,
+          'gender' => $newGender,
+          'height' => $newHeight,
+          'weight' => $newWeight,
+          'race' => $newRace,
+          'country' => $newCountry,
+          'illness' => $newIllness,
+
         ]);
       $user->save();
       try{
@@ -129,11 +141,6 @@ class PassportController extends Controller
       }
       return response()->json(['message' => 'User Password Reset Successfully. Please check your email.', 'status' => true], $this->successStatus);
     }
-    else
-    {
-        return response()->json(['message' => 'Email has not been registered', 'status' => false], 401);
-    }
-
   }
 
   public function changePassword(Request $request) {
