@@ -140,10 +140,8 @@ class PassportController extends Controller
         return response()->json(['message' => 'Failed To Send Email To User', 'status' => false], 402);
       }
       return response()->json(['message' => 'User Password Reset Successfully. Please check your email.', 'status' => true], $this->successStatus);
-    }else{
-      return response()->json(['message' => 'Invalid Email', 'status' => false], 401);
     }
-    
+
   }
 
   public function changePassword(Request $request) {
