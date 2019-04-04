@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME'),
+    'username' => env('MAIL_USERNAME','dbhrv2019@gmail.com'),
 
-    'password' => env('MAIL_PASSWORD'),
+    'password' => env('MAIL_PASSWORD','xjing1997'),
 
     /*
     |--------------------------------------------------------------------------
@@ -101,6 +101,7 @@ return [
 
     'sendmail' => '/usr/sbin/sendmail -bs',
 
+    'pretend' => FALSE,
     /*
     |--------------------------------------------------------------------------
     | Markdown Mail Settings
