@@ -101,7 +101,7 @@ class PassportController extends Controller
     $validator = Validator::make($request->all(), [
         'email' => 'required|string|email',
     ]);
-    if ($validator->fails()) {
+    if ($validator->fails()||User::where('email', $request->email)->first()==null) {
         return response()->json(['error'=>$validator->errors(), 'message' => 'Invalid Email', 'status' => false], 401);
     }
     $user = User::where('email', $request->email)->first();
@@ -134,7 +134,7 @@ class PassportController extends Controller
         ]);
       $user->save();
       try{
-        Mail::to($user)->send(new ResetPassword($user->email, $newPass));
+        Mail::to($user)->send(new ResetPassword($request->email, $newPass));
       }
       catch(Exception $e){
         return response()->json(['message' => 'Failed To Send Email To User', 'status' => false], 402);
