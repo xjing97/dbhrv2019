@@ -98,41 +98,67 @@ class PassportController extends Controller
   }
 
   public function resetPassword(Request $request) {
+
     $validator = Validator::make($request->all(), [
-        'email' => 'required|string|email',
-    ]);
-    if ($validator->fails()) {
-        return response()->json(['error'=>$validator->errors(), 'message' => 'Invalid Email', 'status' => false], 401);
-    }
-    $user = User::where('email', $request->email)->first();
-    if ($user != null) {
-      // $newUser = $user->name;
-      // $newAge = $user->age;
-      // $newGender = $user->gender;
-      // $newHeight = $user->height;
-      // $newWeight = $user->weight;
-      // $newRace = $user->race;
-      // $newCountry = $user->country;
-      // $newIllness = $user->illness;
-      //
-      //
-      // $newPass = str_random(6);
-      //
-      // $user->delete();
-      // $user = new User([
-      //     'name' => $newUser,
-      //     'email' => $request->email,
-      //     'password' => bcrypt($newPass),
-      //     'age' => $newAge,
-      //     'gender' => $newGender,
-      //     'height' => $newHeight,
-      //     'weight' => $newWeight,
-      //     'race' => $newRace,
-      //     'country' => $newCountry,
-      //     'illness' => $newIllness,
-      //
-      //   ]);
-      // $user->save();
+       'email' => 'required|string|email',
+   ]);
+   if ($validator->fails()) {
+       return response()->json(['error'=>$validator->errors(), 'message' => 'Invalid Email', 'status' => false], 401);
+   }
+   $user = User::where('email', $request->email)->first();
+   if ($user != null) {
+     $newPass = str_random(6);
+     $user->delete();
+     $user = new User([
+         'name' => $user->name,
+         'email' => $request->email,
+         'age' => $user->age,
+         'gender' => $user->gender,
+         'country' => $user->country,
+         'race' => $user->race,
+         'height' => $user->height,
+         'weight' => $user->weight,
+         'illness' => $user->illness,
+         'password' => bcrypt($newPass)
+       ]);
+     $user->save();
+
+
+    // $validator = Validator::make($request->all(), [
+    //     'email' => 'required|string|email',
+    // ]);
+    // if ($validator->fails()) {
+    //     return response()->json(['error'=>$validator->errors(), 'message' => 'Invalid Email', 'status' => false], 401);
+    // }
+    // $user = User::where('email', $request->email)->first();
+    // if ($user != null) {
+    //   $newUser = $user->name;
+    //   $newAge = $user->age;
+    //   $newGender = $user->gender;
+    //   $newHeight = $user->height;
+    //   $newWeight = $user->weight;
+    //   $newRace = $user->race;
+    //   $newCountry = $user->country;
+    //   $newIllness = $user->illness;
+    //
+    //
+    //   $newPass = str_random(6);
+    //
+    //   $user->delete();
+    //   $user = new User([
+    //       'name' => $newUser,
+    //       'email' => $request->email,
+    //       'password' => bcrypt($newPass),
+    //       'age' => $newAge,
+    //       'gender' => $newGender,
+    //       'height' => $newHeight,
+    //       'weight' => $newWeight,
+    //       'race' => $newRace,
+    //       'country' => $newCountry,
+    //       'illness' => $newIllness,
+    //
+    //     ]);
+    //   $user->save();
       // try{
       //   Mail::to($user)->send(new ResetPassword($request->email, $newPass));
       // }
