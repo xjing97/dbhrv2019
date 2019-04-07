@@ -106,33 +106,33 @@ class PassportController extends Controller
     }
     $user = User::where('email', $request->email)->first();
     if ($user != null) {
-      $newUser = $user->name;
-      $newAge = $user->age;
-      $newGender = $user->gender;
-      $newHeight = $user->height;
-      $newWeight = $user->weight;
-      $newRace = $user->race;
-      $newCountry = $user->country;
-      $newIllness = $user->illness;
-
-
-      $newPass = str_random(6);
-
-      $user->delete();
-      $user = new User([
-          'name' => $newUser,
-          'email' => $request->email,
-          'password' => bcrypt($newPass),
-          'age' => $newAge,
-          'gender' => $newGender,
-          'height' => $newHeight,
-          'weight' => $newWeight,
-          'race' => $newRace,
-          'country' => $newCountry,
-          'illness' => $newIllness,
-
-        ]);
-      $user->save();
+      // $newUser = $user->name;
+      // $newAge = $user->age;
+      // $newGender = $user->gender;
+      // $newHeight = $user->height;
+      // $newWeight = $user->weight;
+      // $newRace = $user->race;
+      // $newCountry = $user->country;
+      // $newIllness = $user->illness;
+      //
+      //
+      // $newPass = str_random(6);
+      //
+      // $user->delete();
+      // $user = new User([
+      //     'name' => $newUser,
+      //     'email' => $request->email,
+      //     'password' => bcrypt($newPass),
+      //     'age' => $newAge,
+      //     'gender' => $newGender,
+      //     'height' => $newHeight,
+      //     'weight' => $newWeight,
+      //     'race' => $newRace,
+      //     'country' => $newCountry,
+      //     'illness' => $newIllness,
+      //
+      //   ]);
+      // $user->save();
       // try{
       //   Mail::to($user)->send(new ResetPassword($request->email, $newPass));
       // }
