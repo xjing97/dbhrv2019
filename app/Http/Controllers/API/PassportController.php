@@ -107,21 +107,21 @@ class PassportController extends Controller
    }
     $user = User::where('email', $request->email)->first();
    // if ($user != null) {
-   //   $newPass = str_random(6);
-   //   $user->delete();
-   //   $user = new User([
-   //       'name' => $user->name,
-   //       'email' => $request->email,
-   //       'age' => $user->age,
-   //       'gender' => $user->gender,
-   //       'country' => $user->country,
-   //       'race' => $user->race,
-   //       'height' => $user->height,
-   //       'weight' => $user->weight,
-   //       'illness' => $user->illness,
-   //       'password' => bcrypt($newPass)
-   //     ]);
-   //   $user->save();
+     $newPass = str_random(6);
+     $user->delete();
+     $user = new User([
+         'name' => $user->name,
+         'email' => $request->email,
+         'age' => $user->age,
+         'gender' => $user->gender,
+         'country' => $user->country,
+         'race' => $user->race,
+         'height' => $user->height,
+         'weight' => $user->weight,
+         'illness' => $user->illness,
+         'password' => bcrypt($newPass)
+       ]);
+     $user->save();
 
 
     // $validator = Validator::make($request->all(), [
