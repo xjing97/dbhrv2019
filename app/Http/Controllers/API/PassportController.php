@@ -105,7 +105,7 @@ class PassportController extends Controller
    if ($validator->fails()) {
        return response()->json(['error'=>$validator->errors(), 'message' => 'Invalid Email', 'status' => false], 401);
    }
-   // $user = User::where('email', $request->email)->first();
+    $user = User::where('email', $request->email)->first();
    // if ($user != null) {
    //   $newPass = str_random(6);
    //   $user->delete();
@@ -167,9 +167,9 @@ class PassportController extends Controller
       // }
     //   return response()->json(['message' => 'User Password Reset Successfully. Please check your email.', 'status' => true], $this->successStatus);
     // }
-    else{
+    //else{
       return response()->json(['message' => 'Email is not registered', 'status' => false], 402);
-    }
+    //}
 
   }
 
