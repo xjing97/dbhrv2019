@@ -107,7 +107,8 @@ class PassportController extends Controller
    }
     $user = User::where('email', $request->email)->first();
    if ($user != null) {
-     $user->password = bcrypt(str_random(6));
+     $password = str_random(6);
+     $user->password = bcrypt($password);
      //$user->delete();
      // $user = new User([
      //     'name' => $user->name,
@@ -160,7 +161,7 @@ class PassportController extends Controller
     //     ]);
     //   $user->save();
       try{
-        Mail::to($user)->send(new ResetPassword($request->email, $user->password));
+        Mail::to($user)->send(new ResetPassword($request->email, $password));
       }
       catch(Exception $e){
         return response()->json(['message' => 'Failed To Send Email To User', 'status' => false], 402);
