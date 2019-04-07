@@ -98,52 +98,52 @@ class PassportController extends Controller
   }
 
   public function resetPassword(Request $request) {
-    // $validator = Validator::make($request->all(), [
-    //     'email' => 'required|string|email',
-    // ]);
-    // if ($validator->fails()||User::where('email', $request->email)->first()==null) {
-    //     return response()->json(['error'=>$validator->errors(), 'message' => 'Invalid Email', 'status' => false], 401);
-    // }
-    // $user = User::where('email', $request->email)->first();
-    // if ($user != null) {
-    //   $newUser = $user->name;
-    //   $newAge = $user->age;
-    //   $newGender = $user->gender;
-    //   $newHeight = $user->height;
-    //   $newWeight = $user->weight;
-    //   $newRace = $user->race;
-    //   $newCountry = $user->country;
-    //   $newIllness = $user->illness;
-    //
-    //
-    //   $newPass = str_random(6);
-    //
-    //   $user->delete();
-    //   $user = new User([
-    //       'name' => $newUser,
-    //       'email' => $request->email,
-    //       'password' => bcrypt($newPass),
-    //       'age' => $newAge,
-    //       'gender' => $newGender,
-    //       'height' => $newHeight,
-    //       'weight' => $newWeight,
-    //       'race' => $newRace,
-    //       'country' => $newCountry,
-    //       'illness' => $newIllness,
-    //
-    //     ]);
-    //   $user->save();
+    $validator = Validator::make($request->all(), [
+        'email' => 'required|string|email',
+    ]);
+    if ($validator->fails()) {
+        return response()->json(['error'=>$validator->errors(), 'message' => 'Invalid Email', 'status' => false], 401);
+    }
+    $user = User::where('email', $request->email)->first();
+    if ($user != null) {
+      $newUser = $user->name;
+      $newAge = $user->age;
+      $newGender = $user->gender;
+      $newHeight = $user->height;
+      $newWeight = $user->weight;
+      $newRace = $user->race;
+      $newCountry = $user->country;
+      $newIllness = $user->illness;
+
+
+      $newPass = str_random(6);
+
+      $user->delete();
+      $user = new User([
+          'name' => $newUser,
+          'email' => $request->email,
+          'password' => bcrypt($newPass),
+          'age' => $newAge,
+          'gender' => $newGender,
+          'height' => $newHeight,
+          'weight' => $newWeight,
+          'race' => $newRace,
+          'country' => $newCountry,
+          'illness' => $newIllness,
+
+        ]);
+      $user->save();
       // try{
       //   Mail::to($user)->send(new ResetPassword($request->email, $newPass));
       // }
       // catch(Exception $e){
       //   return response()->json(['message' => 'Failed To Send Email To User', 'status' => false], 402);
       // }
-      // return response()->json(['message' => 'User Password Reset Successfully. Please check your email.', 'status' => true], $this->successStatus);
-
-        return response()->json(['message' => 'User Password Reset Successfully. Please check your email.', 'status' => true], $this->successStatus);
-
-    
+      return response()->json(['message' => 'User Password Reset Successfully. Please check your email.', 'status' => true], $this->successStatus);
+    }
+    else{
+      return response()->json(['message' => 'Email is not registered', 'status' => false], 402);
+    }
 
   }
 
