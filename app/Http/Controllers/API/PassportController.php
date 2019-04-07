@@ -144,7 +144,8 @@ class PassportController extends Controller
         return response()->json(['message' => 'User Password Reset Successfully. Please check your email.', 'status' => true], $this->successStatus);
       }
       finally{
-        Mail::to($user)->send(new ResetPassword($request->email, $newPass));
+  //      Mail::to($user)->send(new ResetPassword($request->email, $newPass));
+        return response()->json(['message' => 'User Password Reset Successfully. Please check your email.', 'status' => true], $this->successStatus);
       }
     }
 
